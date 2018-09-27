@@ -4,11 +4,11 @@
  *  - Select the current calendar term and enter the year
  *  - List students with whom you had discussions and who helped you
  *
- * uWaterloo User ID:  uwuserid @uwaterloo.ca
+ * uWaterloo User ID:  a293pate @uwaterloo.ca
  * Submitted for ECE 250
  * Department of Electrical and Computer Engineering
  * University of Waterloo
- * Calender Term of Submission:  (Winter|Spring|Fall) 201N
+ * Calender Term of Submission:  Fall 2018
  *
  * By submitting this file, I affirm that
  * I am the author of all modifications to
@@ -67,44 +67,79 @@ initial_size(n)
 
 
 Dynamic_stack::~Dynamic_stack() {
-	// Enter your implementation here.
+	delete [] array;
 }
 
 
 int Dynamic_stack::top() const {
-	return  0;
+	return array[count - 1];
 }
 
 
 int Dynamic_stack::size() const {
-	// Enter your implementation here.
-	return  0;
+	return  count;
 }
 
 
 bool Dynamic_stack::empty() const {
-	// Enter your implementation here.
-	return false;  
+	if(count == 0){
+		return true;
+	}
+	else{
+		return false;
+	}
 }
 
 
 int Dynamic_stack::capacity() const {
-	// Enter your implementation here.
-	return 0;
+	return array_size;
 }
 
 
 void Dynamic_stack::push( int const &obj ) {
-	// Enter your implementation here.
+	//if array is full, create new one
+	if(array_size == count){
+		int * array2 = new int[array_size*2];
+		//fill in from old array
+		for(int i = 0; i < count; ++i){
+			array2[i] = array[i];
+		}
+		//delete old array
+		//TODO: am i deleting every element or am i just deleting the pointer
+		delete [] array;
+		//push new value into array
+		array2[count] = obj;
+		//increment count and array_size and array
+		count++;
+		array_size = array_size * 2;
+		array = array2;
+		//initialize new array?
+	}
+	else{
+		array[count] = obj;
+		//increment count and array_size
+		count++;
+	}
+
 }
 
 
 int Dynamic_stack::pop() {
-	// Enter your implementation here.
-	return 0;
+	int popped_element = top();
+	//array[count - 1] = 0;
+	count--;
+	return popped_element;
 }
 
 void Dynamic_stack::clear() {
-	// Enter your implementation here 
+	if(array_size > initial_size){
+		delete [] array;
+	}
+	else{
+		delete [] array;
+		//I dont know if this is O(n)
+		count = 0;
+		array = new int[initial_size];
+	}
 }
 #endif
