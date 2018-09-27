@@ -57,11 +57,13 @@ class Dynamic_stack {
 		void clear();		
 };
 
-Dynamic_stack::Dynamic_stack( int n ):
-count( 0 ),
-array_size( n ),
-initial_size(n)
-{
+Dynamic_stack::Dynamic_stack(int n) {
+    if (n < 1) {
+        n = 1;
+    }
+    count = 0;
+    array_size = n;
+    initial_size = n;
 	array = new int[array_size];
 }
 
@@ -137,7 +139,6 @@ void Dynamic_stack::clear() {
 	}
 	else{
 		delete [] array;
-		//I dont know if this is O(n)
 		count = 0;
 		array = new int[initial_size];
 	}
