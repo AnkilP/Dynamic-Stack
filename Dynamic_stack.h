@@ -4,7 +4,7 @@
  *  - Select the current calendar term and enter the year
  *  - List students with whom you had discussions and who helped you
  *
- * uWaterloo User ID:  a293pate @uwaterloo.ca
+ * uWaterloo User ID:  a293pate @edu.uwaterloo.ca
  * Submitted for ECE 250
  * Department of Electrical and Computer Engineering
  * University of Waterloo
@@ -134,7 +134,7 @@ int Dynamic_stack::pop() {
 }
 
 void Dynamic_stack::clear() {
-	if(array_size > initial_size){
+	if(array_size == initial_size){
 		delete [] array;
 	}
 	else{
