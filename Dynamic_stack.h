@@ -64,7 +64,7 @@ Dynamic_stack::Dynamic_stack(int n) {
     count = 0;
     array_size = n;
     initial_size = n;
-	array = new int[array_size];
+    array = new int[array_size];
 }
 
 
@@ -74,6 +74,9 @@ Dynamic_stack::~Dynamic_stack() {
 
 
 int Dynamic_stack::top() const {
+	if(empty()){
+		throw underflow();
+	}
 	return array[count - 1];
 }
 
@@ -119,7 +122,7 @@ void Dynamic_stack::push( int const &obj ) {
 	}
 	else{
 		array[count] = obj;
-		//increment count and array_size
+		//increment count 
 		count++;
 	}
 
